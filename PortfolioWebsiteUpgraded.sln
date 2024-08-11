@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortfolioWebsiteUpgraded.Server", "PortfolioWebsiteUpgraded.Server\PortfolioWebsiteUpgraded.Server.csproj", "{6E17F2A2-AEB2-46A5-837A-061D6F0550A6}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "portfoliowebsiteupgraded.client", "portfoliowebsiteupgraded.client\portfoliowebsiteupgraded.client.esproj", "{7659DBD7-13BA-4E87-83CD-1B557F7C2C16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E17F2A2-AEB2-46A5-837A-061D6F0550A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E17F2A2-AEB2-46A5-837A-061D6F0550A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E17F2A2-AEB2-46A5-837A-061D6F0550A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E17F2A2-AEB2-46A5-837A-061D6F0550A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7659DBD7-13BA-4E87-83CD-1B557F7C2C16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7659DBD7-13BA-4E87-83CD-1B557F7C2C16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7659DBD7-13BA-4E87-83CD-1B557F7C2C16}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7659DBD7-13BA-4E87-83CD-1B557F7C2C16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7659DBD7-13BA-4E87-83CD-1B557F7C2C16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7659DBD7-13BA-4E87-83CD-1B557F7C2C16}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE1161E7-7B53-48DC-97D4-67D875602BBE}
+	EndGlobalSection
+EndGlobal
