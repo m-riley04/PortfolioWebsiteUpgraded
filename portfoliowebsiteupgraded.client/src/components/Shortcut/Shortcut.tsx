@@ -1,9 +1,14 @@
-function Shortcut(name: string, image_uri: string) {
+import Draggable from "react-draggable";
+import "../Shortcut/Shortcut.scss"
+
+function Shortcut(props: { name: string, image_uri: string }) {
     return (
-        <div>
-            <p>{name}</p>
-            <p>{image_uri}</p>
-        </div>
+        <Draggable>
+            <div className="shortcut">
+                <p>{props.name}</p>
+                <p>{props.image_uri}</p>
+            </div>
+        </Draggable>
     );
 }
 
