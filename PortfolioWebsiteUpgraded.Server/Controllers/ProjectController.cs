@@ -11,10 +11,10 @@ namespace PortfolioWebsiteUpgraded.Server.Controllers
         public ProjectDataAccessor dbAccessor = new();
 
         [HttpGet]
-        [Route("all")]
+        [Route("")]
         public JsonResult GetAll()
         {
-            return new JsonResult(dbAccessor.GetProjects());
+            return new JsonResult(dbAccessor.GetProjects().ToList());
         }
 
         [HttpPut]
