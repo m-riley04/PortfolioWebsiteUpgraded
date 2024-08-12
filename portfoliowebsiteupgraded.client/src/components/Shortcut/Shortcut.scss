@@ -1,0 +1,15 @@
+$hover-color: rgba(160, 181, 233, 0.3);
+$clicked-color: rgba(124, 154, 230, 0.56);
+
+.shortcut {
+    width: 75px;
+    height: 100px;
+}
+
+.shortcut:hover {
+    background-color: $hover-color;
+}
+
+.shortcut:active {
+    background-color: $clicked-color;
+}
