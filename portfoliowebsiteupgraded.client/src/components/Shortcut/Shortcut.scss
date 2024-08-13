@@ -1,12 +1,13 @@
 $hover-color: rgba(160, 181, 233, 0.3);
 $clicked-color: rgba(124, 154, 230, 0.56);
+$text-size: 12px;
+$text-offset: -1px;
 
 .shortcut {
-    width: 75px;
-    height: 100px;
+    width: 50px;
+    height: 75px;
 
     img {
-        width: 100%;
         user-select: none;
         -moz-user-select: none;
         -webkit-user-select: none;
@@ -14,8 +15,10 @@ $clicked-color: rgba(124, 154, 230, 0.56);
     }
 
     p {
+        margin-top: $text-offset;
         text-align: center;
         font-family: "Microsoft Sans Serif";
+        font-size: $text-size;
         user-select: none;
     }
 }

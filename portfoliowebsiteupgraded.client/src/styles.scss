@@ -1,0 +1,13 @@
+$explorer-bg-color: lightgray;
+
+:root {
+    background-color: black;
+    color: white;
+    font-family: "Microsoft Sans Serif"
+}
+
+button {
+    background-color: $explorer-bg-color;
+    border-top: solid 2px white;
+    border-left: solid 2px white;
+}
