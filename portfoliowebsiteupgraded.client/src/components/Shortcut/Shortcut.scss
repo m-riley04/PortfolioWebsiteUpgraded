@@ -4,6 +4,20 @@ $clicked-color: rgba(124, 154, 230, 0.56);
 .shortcut {
     width: 75px;
     height: 100px;
+
+    img {
+        width: 100%;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    p {
+        text-align: center;
+        font-family: "Microsoft Sans Serif";
+        user-select: none;
+    }
 }
 
 .shortcut:hover {

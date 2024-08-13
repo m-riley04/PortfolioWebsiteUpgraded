@@ -1,12 +1,19 @@
 import Draggable from "react-draggable";
-import "../Shortcut/Shortcut.scss"
+import "../Shortcut/Shortcut.scss";
+import React from "react";
+import IShortcut from "../../interfaces/IShortcut";
 
-function Shortcut(props: { name: string, image_uri: string }) {
+function Shortcut(props: IShortcut) {
+    const nodeRef = React.useRef(null)
+
     return (
-        <Draggable>
-            <div className="shortcut">
+        <Draggable
+            nodeRef={nodeRef}
+            defaultPosition={{ x: props.x ?? 0, y: props.y ?? 0 }}
+        >
+            <div className="shortcut" ref={nodeRef} onDoubleClick={props.onOpen}>
+                <img src={props.image_uri} draggable={false} />
                 <p>{props.name}</p>
-                <p>{props.image_uri}</p>
             </div>
         </Draggable>
     );
