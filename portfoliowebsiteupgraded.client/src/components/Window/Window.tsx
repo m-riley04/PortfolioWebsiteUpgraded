@@ -14,7 +14,7 @@ function Window(props: IWindow) {
             onStart={() => console.log(props.id)}
         >
             <div className="window" ref={nodeRef}>
-                <WindowControls title={props.title} hasClose={true} className="handle" onClose={() => props.onClose?.(props.id)} />
+                <WindowControls title={props.title ?? "Window Title"} icon_uri={props.icon_uri} hasClose={true} hasMinimize={true} hasMaximize={true} className="handle" onClose={() => props.onClose?.(props.id)} />
                 <div className="body">
                     {props.element}
                 </div>
