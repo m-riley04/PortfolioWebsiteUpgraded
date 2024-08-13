@@ -4,8 +4,8 @@ import IShortcut from "../../interfaces/IShortcut";
 import "../Desktop/Desktop.scss";
 import IWindow from "../../interfaces/IWindow";
 import Window from "../../components/Window/Window";
+import Taskbar from "../../components/Taskbar/Taskbar";
 
-let windowIdCounter = 0;
 const X_PADDING = 50;
 
 function Desktop(props: { shortcuts?: IShortcut[] }) {
@@ -15,14 +15,15 @@ function Desktop(props: { shortcuts?: IShortcut[] }) {
 
     }, [windows])
 
-    function getUniqueWindowId(): number {
-        return ++windowIdCounter;
-    }
-
     function addWindow(window?: IWindow) {
         if (window) {
-            const newWindow = { ...window, id: getUniqueWindowId() };
-            setWindows([...windows, newWindow]);
+            // Check if the window is already opened
+            if (windows.some((_) => _.id === window.id)) {
+                console.log("Window is already open!");
+                return;
+            }
+
+            setWindows([...windows, window]);
             console.log("Window added");
         }
     }
@@ -33,34 +34,46 @@ function Desktop(props: { shortcuts?: IShortcut[] }) {
     }
 
     return (
-        <div className="desktop">
-            { // Create shortcuts
-                props.shortcuts?.map((shortcut, i) => {
-                    const window: IWindow | undefined = shortcut.window;
+        <div className="monitor">
+            <div className="desktop">
+                { // Create shortcuts
+                    props.shortcuts?.map((shortcut, i) => {
+                        const window: IWindow | undefined = shortcut.window;
 
-                    return <Shortcut key={i}
-                        name={shortcut.name}
-                        image_uri={shortcut.image_uri}
-                        window={window}
-                        x={X_PADDING * i}
-                        y={0}
-                        onOpen={() => addWindow(window)}/>
+                        // Check inherited values
+                        if (window) {
+                            window.title = (window.title ?? shortcut.name) ?? "Window Title";
+                            window.icon_uri = (window.icon_uri ?? shortcut.image_uri) ?? "vite.svg";
+                        }
+
+                        return <Shortcut key={i}
+                            name={shortcut.name}
+                            image_uri={shortcut.image_uri}
+                            window={window}
+                            x={X_PADDING * i}
+                            y={0}
+                            onOpen={() => addWindow(window)}/>
+                    }
+                    ) ?? <Shortcut name="Default" image_uri="vite.svg" x={0} y={0} />
                 }
-                ) ?? <Shortcut name="Default" image_uri="vite.svg" x={0} y={0} />
-            }
 
-            { // Create windows
-                windows.map((window) => {
-                    return <Window
-                        key={window.id}
-                        id={window.id}
-                        title={window.title}
-                        element={window.element}
-                        onClose={() => removeWindowByKey(window.id)}
-                        x={window.x}
-                        y={window.y}/>;
-                })
-            }
+                { // Create windows
+                    windows.map((window) => {
+                        return <Window
+                            key={window.id}
+                            id={window.id}
+                            title={window.title}
+                            icon_uri={window.icon_uri}
+                            element={window.element}
+                            onClose={() => removeWindowByKey(window.id)}
+                            x={window.x}
+                            y={window.y}/>;
+                    })
+                }
+
+                
+            </div>
+            <Taskbar windows={windows} />
         </div>
     );
 }
