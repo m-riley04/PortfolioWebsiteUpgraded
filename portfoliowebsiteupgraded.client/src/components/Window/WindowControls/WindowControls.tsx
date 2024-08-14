@@ -6,6 +6,7 @@ interface IWindowControls {
     hasClose?: boolean;
     hasMinimize?: boolean;
     hasMaximize?: boolean;
+    hasMenuBar?: boolean;
     className?: string;
     onClose?: () => void;
     onMinimize?: MouseEventHandler<HTMLButtonElement>;
@@ -27,12 +28,14 @@ function WindowControls(props: IWindowControls) {
                     {props.hasClose ? <button className="close-button" onClick={props.onClose}>X</button> : <></>}
                 </div>
             </div>
-            <div className="dropdowns">
-                <button>File</button>
-                <button>Edit</button>
-                <button>View</button>
-                <button>Help</button>
-            </div>
+            {props.hasMenuBar
+                ?   <div className="dropdowns">
+                        <button>File</button>
+                        <button>Edit</button>
+                        <button>View</button>
+                        <button>Help</button>
+                    </div>
+                : <></>}
         </div>
     );
 }
