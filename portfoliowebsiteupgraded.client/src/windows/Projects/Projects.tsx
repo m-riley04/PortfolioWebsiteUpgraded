@@ -16,7 +16,14 @@ function Projects() {
     );
 
     function projectToDirectoryItem(project: ProjectModel): DirectoryItemModel {
-        return { name: project.name, description: project.description ?? "", dateModified: new Date(), type: FileTypeEnum.TEXT_DOCUMENT};
+        return {
+            name: project.name,
+            description: project.description ?? "",
+            dateModified: new Date(),
+            type: FileTypeEnum.TEXT_DOCUMENT,
+            onClick: () => {
+                console.log(project)
+        }};
     }
 
     async function populateProjectData() {

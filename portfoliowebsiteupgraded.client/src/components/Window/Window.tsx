@@ -3,6 +3,10 @@ import "../Window/Window.scss"
 import React from "react";
 import WindowControls from "./WindowControls/WindowControls";
 import IWindow from "../../interfaces/IWindow";
+import WindowTypeEnum from "../../enums/WindowTypeEnum";
+
+const DEFAULT_WIDTH = 800;
+const DEFAULT_HEIGHT = 500;
 
 function Window(props: IWindow) {
     const nodeRef = React.useRef(null)
@@ -11,10 +15,21 @@ function Window(props: IWindow) {
             nodeRef={nodeRef}
             defaultPosition={{ x: props.x ?? 0, y: props.y ?? 0 }}
             handle=".handle"
-            onStart={() => console.log(props.id)}
         >
-            <div className="window" ref={nodeRef}>
-                <WindowControls title={props.title ?? "Window Title"} icon_uri={props.icon_uri} hasClose={true} hasMinimize={true} hasMaximize={true} className="handle" onClose={() => props.onClose?.(props.id)} />
+            <div
+                className={`window ${props.type === WindowTypeEnum.DIALOG ? "dialog" : "window"}`}
+                style={{ width: `${props.width ?? DEFAULT_WIDTH}px`, height: `${props.height ?? DEFAULT_HEIGHT}px` }}
+                ref={nodeRef}
+            >
+                <WindowControls
+                    title={props.title ?? "Window Title"}
+                    icon_uri={props.icon_uri ?? "icons/msg_error.png"}
+                    hasClose={true}
+                    hasMinimize={true}
+                    hasMaximize={true}
+                    hasMenuBar={props.type === WindowTypeEnum.EXPLORER}
+                    className="handle"
+                    onClose={() => props.onClose?.(props.id)} />
                 <div className="body">
                     {props.element}
                 </div>
