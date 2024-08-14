@@ -5,11 +5,25 @@ import IShortcut from './interfaces/IShortcut.ts';
 import AboutMe from './windows/AboutMe/AboutMe.tsx';
 import WindowEnum from './enums/WindowEnum.ts';
 import Projects from './windows/Projects/Projects.tsx';
+import MessageBox from './windows/MessageBox/MessageBox.tsx';
+import WindowTypeEnum from './enums/WindowTypeEnum.ts';
 
 const shortcuts: IShortcut[] = [
-    { name: "Projects", image_uri: "directory_open.png", window: { id: WindowEnum.PROJECTS, element: <Projects />, x: 0, y: 0 } },
-    { name: "About Me", image_uri: "users.png", window: { id: WindowEnum.ABOUT_ME, element: <AboutMe/>, x: 0, y: 0 } },
-    { name: "Recycle Bin", image_uri: "recycle_bin_empty.png"}
+    {
+        name: "Projects",
+        image_uri: "icons/directory_open.png",
+        window: { id: WindowEnum.PROJECTS, element: <Projects />, type: WindowTypeEnum.EXPLORER, width: 800, height: 500 }
+    },
+    {
+        name: "About Me",
+        image_uri: "icons/users.png",
+        window: { id: WindowEnum.ABOUT_ME, element: <AboutMe />, type: WindowTypeEnum.EXPLORER, width: 800, height: 500 }
+    },
+    {
+        name: "Recycle Bin",
+        image_uri: "icons/recycle_bin_empty.png",
+        window: { id: 24, element: <MessageBox icon={0} text="This is not implemented yet." />, type: WindowTypeEnum.DIALOG, width: 800, height: 500 }
+    }
 ]
 
 function App() {
