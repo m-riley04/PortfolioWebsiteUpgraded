@@ -10,6 +10,7 @@ function Shortcut(props: IShortcut) {
         <Draggable
             nodeRef={nodeRef}
             defaultPosition={{ x: props.x ?? 0, y: props.y ?? 0 }}
+            bounds="parent"
         >
             <div className="shortcut" ref={nodeRef} onDoubleClick={props.onOpen}>
                 <img src={props.image_uri} draggable={false} />
