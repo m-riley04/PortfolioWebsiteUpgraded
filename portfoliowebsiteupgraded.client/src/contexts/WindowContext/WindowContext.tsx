@@ -5,6 +5,7 @@ import IWindow from "../../interfaces/IWindow";
 const WindowContext = createContext<{
     windows: IWindow[],
     addWindow: (window: IWindow) => void,
+    bringToFront: (id: number) => void,
     removeWindowByKey: (id: number) => void
 } | undefined>(undefined);
 
@@ -12,7 +13,7 @@ const WindowContext = createContext<{
 let windowCounter = 0;
 export const WindowProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [windows, setWindows] = useState<IWindow[]>([]);
-    
+    const [highestZIndex, setHighestZIndex] = useState(1);
 
     const addWindow = (window: IWindow) => {
         if (windows.some((w) => w.id === window.id)) {
@@ -20,7 +21,21 @@ export const WindowProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             return;
         }
         window.id = ++windowCounter;
+        window.z = highestZIndex;
+        setHighestZIndex(highestZIndex + 1);
         setWindows([...windows, window]);
+    };
+
+    const bringToFront = (id: number) => {
+        const windowToBringToFront = windows.find(w => w.id === id);
+        if (windowToBringToFront) {
+            setWindows(windows.map(w =>
+                w.id === id
+                    ? { ...w, z: highestZIndex }
+                    : w
+            ));
+            setHighestZIndex(highestZIndex + 1);
+        }
     };
 
     const removeWindowByKey = (id: number) => {
@@ -29,7 +44,7 @@ export const WindowProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     };
 
     return (
-        <WindowContext.Provider value={{ windows, addWindow, removeWindowByKey }}>
+        <WindowContext.Provider value={{ windows, addWindow, bringToFront, removeWindowByKey }}>
             {children}
         </WindowContext.Provider>
     );

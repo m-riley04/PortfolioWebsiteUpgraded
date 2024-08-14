@@ -12,6 +12,7 @@ export default interface IWindow {
     height?: number;
     x?: number;
     y?: number;
+    z?: number;
     onClose?: (i: number) => void;
     hasBody?: boolean;
     hasHandle?: boolean;
