@@ -8,29 +8,33 @@ $shadow-width: 3px;
 $shadow-color: rgba(0, 0, 0, 0.5);
 
 .window {
-    background-color: $window-body-background-color;
+    background-color: $window-color;
     border: solid $window-border-width $window-color;
-    box-shadow: inset $shadow-width ($handle-height + $dropdown-height + $shadow-width) $shadow-color, $shadow-width $shadow-width $shadow-color;
-
-    .dialog {
-        box-shadow: inset $shadow-width ($handle-height + $shadow-width) $shadow-color, $shadow-width $shadow-width $shadow-color;
-    }
+    box-shadow: $shadow-width $shadow-width $shadow-color;
 
     .body {
-        width: 100%;
-        height: 95%;
         overflow: auto;
         padding: 5px;
+        box-shadow: inset $shadow-width $shadow-width $shadow-color;
+        background-color: $window-body-background-color;
+        height: 80%;
     }
 
-    .dropdowns {
-        height: $dropdown-height;
+    .dialog-body {
         background-color: $window-color;
+        color: black;
+        box-shadow: inset 0px 0px black; // Turn off the box shadow for dialog
+    }
+
+    .dialog-button-container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
 
         button {
-            background-color: $window-color;
-            border: 0px;
-            height: 100%;
+            width: 20%;
         }
     }
 
@@ -71,4 +75,3 @@ $shadow-color: rgba(0, 0, 0, 0.5);
         }
     }
 }
-

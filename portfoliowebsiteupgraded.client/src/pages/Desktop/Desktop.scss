@@ -1,13 +1,14 @@
 $background-color: #008080;
 
 .monitor {
-    height: 75%;
-    width: 75%;
+    height: 90%;
+    width: 90%;
 
     .desktop {
         display: flex;
         height: 100%;
         background-color: $background-color;
+        overflow: hidden;
     }
 }
 
