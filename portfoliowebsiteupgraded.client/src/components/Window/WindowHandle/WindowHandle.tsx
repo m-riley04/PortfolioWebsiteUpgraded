@@ -1,19 +1,18 @@
 import { MouseEventHandler } from "react";
 
-interface IWindowControls {
+interface IWindowHandle {
     title: string;
     icon_uri: string;
     hasClose?: boolean;
     hasMinimize?: boolean;
     hasMaximize?: boolean;
-    hasMenuBar?: boolean;
     className?: string;
     onClose?: () => void;
     onMinimize?: MouseEventHandler<HTMLButtonElement>;
     onMaximize?: MouseEventHandler<HTMLButtonElement>;
 }
 
-function WindowControls(props: IWindowControls) {
+function WindowHandle(props: IWindowHandle) {
 
     return (
         <div>
@@ -28,16 +27,8 @@ function WindowControls(props: IWindowControls) {
                     {props.hasClose ? <button className="close-button" onClick={props.onClose}>X</button> : <></>}
                 </div>
             </div>
-            {props.hasMenuBar
-                ?   <div className="dropdowns">
-                        <button>File</button>
-                        <button>Edit</button>
-                        <button>View</button>
-                        <button>Help</button>
-                    </div>
-                : <></>}
         </div>
     );
 }
 
-export default WindowControls;
+export default WindowHandle;

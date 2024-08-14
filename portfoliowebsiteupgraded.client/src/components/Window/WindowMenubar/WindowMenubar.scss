@@ -1,0 +1,13 @@
+$dropdown-height: 35px;
+$window-color: lightgray;
+
+.dropdowns {
+    height: $dropdown-height;
+    background-color: $window-color;
+
+    button {
+        background-color: $window-color;
+        border: 0px;
+        height: 100%;
+    }
+}
