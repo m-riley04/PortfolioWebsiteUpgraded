@@ -1,41 +1,73 @@
 import Draggable from "react-draggable";
 import "../Window/Window.scss"
-import React from "react";
-import WindowControls from "./WindowControls/WindowControls";
+import React, { FunctionComponent } from "react";
+import WindowHandle from "./WindowHandle/WindowHandle";
 import IWindow from "../../interfaces/IWindow";
 import WindowTypeEnum from "../../enums/WindowTypeEnum";
+import WindowMenubar from "./WindowMenubar/WindowMenubar";
 
-const DEFAULT_WIDTH = 800;
-const DEFAULT_HEIGHT = 500;
+const Window: FunctionComponent<IWindow> = ({
+    id,
+    title = "Window Title",
+    element = <></>,
+    width = 800,
+    height = 500,
+    hasBody = true,
+    hasHandle = true,
+    hasButtons = false,
+    buttons = [{ title: "Ok" }],
+    type = WindowTypeEnum.DIALOG,
+    x = 0,
+    y = 0,
+    icon_uri = "icons/msg_error.png",
+    onClose,
+}) => {
+    const nodeRef = React.useRef(null);
 
-function Window(props: IWindow) {
-    const nodeRef = React.useRef(null)
+    const handle = hasHandle ? (
+        <WindowHandle
+            title={title}
+            icon_uri={icon_uri}
+            hasClose={true}
+            hasMinimize={true}
+            hasMaximize={true}
+            className="handle"
+            onClose={() => onClose?.(id)}
+        />
+    ) : <></>;
+
+    const menuBar = type === WindowTypeEnum.EXPLORER ? <WindowMenubar /> : <></>;
+
+    const body = hasBody ? (
+        <div className={`body ${type === WindowTypeEnum.DIALOG ? "dialog-body" : ""}`}>{element}</div>
+    ) : (
+        <></>
+    );
+
+    const buttonsContainer = hasButtons ? (
+        <div className="dialog-button-container">
+            {buttons.map((option, i) => <button key={i} onClick={option.onClick}><u>{option.title.charAt(0)}</u>{option.title.substring(1)}</button>)}
+        </div>
+    ) : <></>;
+
     return (
         <Draggable
             nodeRef={nodeRef}
-            defaultPosition={{ x: props.x ?? 0, y: props.y ?? 0 }}
+            defaultPosition={{ x, y }}
             handle=".handle"
         >
             <div
-                className={`window ${props.type === WindowTypeEnum.DIALOG ? "dialog" : "window"}`}
-                style={{ width: `${props.width ?? DEFAULT_WIDTH}px`, height: `${props.height ?? DEFAULT_HEIGHT}px` }}
+                className="window"
+                style={{ width: `${width}px`, height: `${height}px` }}
                 ref={nodeRef}
             >
-                <WindowControls
-                    title={props.title ?? "Window Title"}
-                    icon_uri={props.icon_uri ?? "icons/msg_error.png"}
-                    hasClose={true}
-                    hasMinimize={true}
-                    hasMaximize={true}
-                    hasMenuBar={props.type === WindowTypeEnum.EXPLORER}
-                    className="handle"
-                    onClose={() => props.onClose?.(props.id)} />
-                <div className="body">
-                    {props.element}
-                </div>
+                {handle}
+                {menuBar}
+                {body}
+                {buttonsContainer}
             </div>
         </Draggable>
     );
-}
+};
 
 export default Window;

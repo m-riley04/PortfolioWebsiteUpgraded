@@ -33,8 +33,8 @@ function Directory(props: IDirectory) {
             </thead>
             <tbody>
                 {
-                    props.items.map((item, i) =>
-                        <tr key={i} className="body-row" onClick={item.onClick}>
+                    props.items.map((item) =>
+                        <tr key={item.id} className="body-row" onClick={item.onClick}>
                             <td className="icon-container"><img src={item.icon_uri ?? "icons/document.png"} />{item.name}</td>
                             <td>{item.description}</td>
                             <td>{item.dateModified.toDateString()}</td>

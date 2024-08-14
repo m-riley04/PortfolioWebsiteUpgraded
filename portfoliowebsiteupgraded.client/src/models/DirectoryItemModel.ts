@@ -1,6 +1,7 @@
 import FileTypeEnum from "../enums/FileTypeEnum";
 
 export default interface DirectoryItemModel {
+    id: number;
     name: string;
     icon_uri?: string;
     description: string;

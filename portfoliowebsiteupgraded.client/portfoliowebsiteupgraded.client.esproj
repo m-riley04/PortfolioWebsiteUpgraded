@@ -10,7 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\components\Taskbar\" />
-    <Folder Include="src\components\Window\WindowControls\" />
+    <Folder Include="src\components\Window\WindowMenubar\" />
+    <Folder Include="src\contexts\WindowContext\" />
     <Folder Include="src\windows\AboutMe\" />
     <Folder Include="src\windows\MessageBox\" />
     <Folder Include="src\windows\Directory\" />

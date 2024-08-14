@@ -1,6 +1,7 @@
 enum WindowTypeEnum {
+    DEFAULT,
     DIALOG,
-    EXPLORER
+    EXPLORER,
 }
 
 export default WindowTypeEnum;

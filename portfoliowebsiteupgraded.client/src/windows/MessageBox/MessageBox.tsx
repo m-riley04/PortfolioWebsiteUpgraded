@@ -1,4 +1,6 @@
+import { FunctionComponent } from "react";
 import MessageBoxIconEnum from "../../enums/MessageBoxIconEnum";
+import "../MessageBox/MessageBox.scss";
 
 interface IMessageBox {
     icon: MessageBoxIconEnum;
@@ -20,14 +22,14 @@ function getMessageBoxIcon(icon: MessageBoxIconEnum): string {
     }
 }
 
-function MessageBox(props: IMessageBox) {
+const MessageBox: FunctionComponent<IMessageBox> = ({
+    text = "Lorem ipsum",
+    icon = MessageBoxIconEnum.INFORMATION
+}) => {
     return (
         <div className="message-box">
-            <div className="body-container">
-                <img src={getMessageBoxIcon(props.icon)} />
-                <p>{props.text}</p>
-            </div>
-            <button>Close</button>
+            <img src={getMessageBoxIcon(icon)} />
+            <p>{text}</p>
         </div>
     );
 }
