@@ -15,13 +15,13 @@ function Taskbar(props: ITaskbar) {
     return (
         <div className="taskbar">
             <div className="tabs-container">
-                <button className="button-start"><img src="windows.png" />Start</button>
+                <button className="button-start"><img src="icons/windows.png" />Start</button>
                 {props.windows.map((window) => 
                     <button key={window.id}>{window.title}</button>
                 )}
             </div>
             <div className="tray-container">
-                <button><img src="loudspeaker.png"/></button>
+                <button><img src="icons/loudspeaker.png"/></button>
                 <p>{getTimeStringFormatted(time)}</p>
             </div>
         </div>
