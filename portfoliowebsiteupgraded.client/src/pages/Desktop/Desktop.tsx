@@ -6,7 +6,7 @@ import IWindow from "../../interfaces/IWindow";
 import Window from "../../components/Window/Window";
 import Taskbar from "../../components/Taskbar/Taskbar";
 
-const X_PADDING = 50;
+const X_PADDING = 20;
 
 function Desktop(props: { shortcuts?: IShortcut[] }) {
     const [windows, setWindows] = useState<IWindow[]>([]);
@@ -46,28 +46,14 @@ function Desktop(props: { shortcuts?: IShortcut[] }) {
                             window.icon_uri = (window.icon_uri ?? shortcut.image_uri) ?? "vite.svg";
                         }
 
-                        return <Shortcut key={i}
-                            name={shortcut.name}
-                            image_uri={shortcut.image_uri}
-                            window={window}
-                            x={X_PADDING * i}
-                            y={0}
-                            onOpen={() => addWindow(window)}/>
+                        return <Shortcut {...shortcut} key={i} x={X_PADDING * i} onOpen={() => addWindow(window)}/>
                     }
                     ) ?? <Shortcut name="Default" image_uri="vite.svg" x={0} y={0} />
                 }
 
                 { // Create windows
                     windows.map((window) => {
-                        return <Window
-                            key={window.id}
-                            id={window.id}
-                            title={window.title}
-                            icon_uri={window.icon_uri}
-                            element={window.element}
-                            onClose={() => removeWindowByKey(window.id)}
-                            x={window.x}
-                            y={window.y}/>;
+                        return <Window {...window} key={window.id} onClose={() => removeWindowByKey(window.id)} />;
                     })
                 }
 
