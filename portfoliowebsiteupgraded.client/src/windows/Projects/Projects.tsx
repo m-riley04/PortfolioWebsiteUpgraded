@@ -3,8 +3,12 @@ import ProjectModel from '../../models/ProjectModel';
 import Directory from '../Directory/Directory';
 import DirectoryItemModel from '../../models/DirectoryItemModel';
 import FileTypeEnum from '../../enums/FileTypeEnum';
+import { useWindowManager } from '../../contexts/WindowContext/WindowContext';
+import IWindow from '../../interfaces/IWindow';
+import WindowTypeEnum from '../../enums/WindowTypeEnum';
 
 function Projects() {
+    const { addWindow } = useWindowManager();
     const [items, setItems] = useState<DirectoryItemModel[]>([]);
 
     useEffect(() => {
@@ -12,11 +16,25 @@ function Projects() {
     }, []);
 
     return (
-        <Directory items={items} />
+        <Directory items={items.map(item => ({...item, onClick: () => openProjectWindow(item)}))} />
     );
+
+    function openProjectWindow(item: DirectoryItemModel) {
+        const window: IWindow = {
+            id: 0, // This will be set by the context
+            title: item.name,
+            element: <div>{item.name}</div>,
+            width: 1000,
+            height: 800,
+            icon_uri: item.icon_uri,
+            type: WindowTypeEnum.DEFAULT
+        };
+        addWindow(window);
+    }
 
     function projectToDirectoryItem(project: ProjectModel): DirectoryItemModel {
         return {
+            id: project.projectId,
             name: project.name,
             description: project.description ?? "",
             dateModified: new Date(),
