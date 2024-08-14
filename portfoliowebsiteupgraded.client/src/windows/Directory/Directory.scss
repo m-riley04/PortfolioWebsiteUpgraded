@@ -1,11 +1,41 @@
+$window-color: lightgray;
+
 .directory {
+    color: black;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .header-row {
+        background-color: $window-color;
 
 
-    table,
-    tablehead,
-    tr,
-    td,
-    th {
-        text-align: left;
+        th {
+            text-align: left;
+            border-right: solid 2px black;
+            border-bottom: solid 2px black;
+            font-weight: normal;
+        }
+    }
+
+    .body-row:hover {
+        color: white;
+        background-color: blue;
+        cursor: pointer;
+    }
+
+    .body-row {
+
+        .icon-container {
+            display: flex;
+            align-items: center;
+
+            img {
+                width: 20px;
+                height: 20px;
+            }
+        }
     }
 }

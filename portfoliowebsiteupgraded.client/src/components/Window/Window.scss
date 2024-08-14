@@ -1,5 +1,6 @@
 $window-color: lightgray;
 $window-border-width: 4px;
+$window-body-background-color: white;
 $handle-height: 25px;
 $handle-color: blue;
 $dropdown-height: 35px;
@@ -7,11 +8,13 @@ $shadow-width: 3px;
 $shadow-color: rgba(0, 0, 0, 0.5);
 
 .window {
-    width: 50%;
-    height: 50%;
-    background-color: $window-color;
+    background-color: $window-body-background-color;
     border: solid $window-border-width $window-color;
     box-shadow: inset $shadow-width ($handle-height + $dropdown-height + $shadow-width) $shadow-color, $shadow-width $shadow-width $shadow-color;
+
+    .dialog {
+        box-shadow: inset $shadow-width ($handle-height + $shadow-width) $shadow-color, $shadow-width $shadow-width $shadow-color;
+    }
 
     .body {
         width: 100%;
@@ -27,9 +30,7 @@ $shadow-color: rgba(0, 0, 0, 0.5);
         button {
             background-color: $window-color;
             border: 0px;
-            padding: 5px;
             height: 100%;
-            margin-right: 5px;
         }
     }
 
@@ -70,3 +71,4 @@ $shadow-color: rgba(0, 0, 0, 0.5);
         }
     }
 }
+
