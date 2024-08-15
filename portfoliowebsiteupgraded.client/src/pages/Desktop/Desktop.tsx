@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Shortcut from "../../components/Shortcut/Shortcut";
 import IShortcut from "../../interfaces/IShortcut";
 import "../Desktop/Desktop.scss";
@@ -17,7 +16,7 @@ function Desktop(props: { shortcuts?: IShortcut[] }) {
             <div className="desktop">
                 { // Create shortcuts
                     props.shortcuts?.map((shortcut, i) => {
-                        const window: IWindow | undefined = shortcut.window;
+                        const window: IWindow = shortcut.window ?? { id: 9999 };
 
                         // Check inherited values
                         if (window) {

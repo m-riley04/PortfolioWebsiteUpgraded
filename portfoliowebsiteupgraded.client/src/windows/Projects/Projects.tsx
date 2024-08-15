@@ -17,7 +17,7 @@ function Projects() {
     }, []);
 
     return (
-        <Directory items={items.map(item => ({...item, onClick: () => openProjectWindow(item)}))} />
+        <Directory items={items} />
     );
 
     function openProjectWindow(project: ProjectModel) {
