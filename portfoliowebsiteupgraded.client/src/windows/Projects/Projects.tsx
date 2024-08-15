@@ -6,6 +6,7 @@ import FileTypeEnum from '../../enums/FileTypeEnum';
 import { useWindowManager } from '../../contexts/WindowContext/WindowContext';
 import IWindow from '../../interfaces/IWindow';
 import WindowTypeEnum from '../../enums/WindowTypeEnum';
+import ProjectView from '../ProjectView/ProjectView';
 
 function Projects() {
     const { addWindow } = useWindowManager();
@@ -19,14 +20,14 @@ function Projects() {
         <Directory items={items.map(item => ({...item, onClick: () => openProjectWindow(item)}))} />
     );
 
-    function openProjectWindow(item: DirectoryItemModel) {
+    function openProjectWindow(project: ProjectModel) {
         const window: IWindow = {
             id: 0, // This will be set by the context
-            title: item.name,
-            element: <div>{item.name}</div>,
+            title: project.name,
+            element: <ProjectView project={project} />,
             width: 1000,
             height: 800,
-            icon_uri: item.icon_uri,
+            icon_uri: "icons/document.png", // No data-driven icon for now
             type: WindowTypeEnum.DEFAULT
         };
         addWindow(window);
@@ -39,9 +40,8 @@ function Projects() {
             description: project.description ?? "",
             dateModified: new Date(),
             type: FileTypeEnum.TEXT_DOCUMENT,
-            onClick: () => {
-                console.log(project)
-        }};
+            onClick: () => openProjectWindow(project)
+        };
     }
 
     async function populateProjectData() {

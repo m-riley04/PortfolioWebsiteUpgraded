@@ -15,5 +15,6 @@
     <Folder Include="src\windows\AboutMe\" />
     <Folder Include="src\windows\MessageBox\" />
     <Folder Include="src\windows\Directory\" />
+    <Folder Include="src\windows\ProjectView\" />
   </ItemGroup>
 </Project>
