@@ -8,6 +8,8 @@ import Projects from './windows/Projects/Projects.tsx';
 import MessageBox from './windows/MessageBox/MessageBox.tsx';
 import WindowTypeEnum from './enums/WindowTypeEnum.ts';
 import { WindowProvider } from './contexts/WindowContext/WindowContext.tsx';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { client } from './client.ts';
 
 const shortcuts: IShortcut[] = [
     {
@@ -48,13 +50,15 @@ const shortcuts: IShortcut[] = [
 
 function App() {
     return (
-        <WindowProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Desktop shortcuts={shortcuts}/>}></Route>
-                </Routes>
-            </BrowserRouter>
-        </WindowProvider>
+        <ApolloProvider client={client}>
+            <WindowProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Desktop shortcuts={shortcuts}/>}></Route>
+                    </Routes>
+                </BrowserRouter>
+            </WindowProvider>
+        </ApolloProvider>
     );
 }
 
