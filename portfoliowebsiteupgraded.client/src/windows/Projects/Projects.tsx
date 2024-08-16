@@ -8,6 +8,24 @@ import IWindow from '../../interfaces/IWindow';
 import WindowTypeEnum from '../../enums/WindowTypeEnum';
 import ProjectView from '../ProjectView/ProjectView';
 
+/**
+ * Turns all keys of an object into camel case typing
+ * @param obj
+ * @returns
+ */
+function toCamelCase(obj: any): any {
+    const newObj: any = {};
+
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            const newKey = key.charAt(0).toLowerCase() + key.slice(1);
+            newObj[newKey] = obj[key];
+        }
+    }
+
+    return newObj;
+}
+
 function Projects() {
     const { addWindow } = useWindowManager();
     const [items, setItems] = useState<DirectoryItemModel[]>([]);
@@ -64,18 +82,7 @@ function Projects() {
         }
     }
 
-    function toCamelCase(obj: any): any {
-        const newObj: any = {};
-
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                const newKey = key.charAt(0).toLowerCase() + key.slice(1);
-                newObj[newKey] = obj[key];
-            }
-        }
-
-        return newObj;
-    }
+    
 }
 
 export default Projects;
