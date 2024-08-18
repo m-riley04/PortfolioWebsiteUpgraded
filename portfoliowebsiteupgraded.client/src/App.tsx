@@ -8,7 +8,7 @@ import Projects from './windows/Projects/Projects.tsx';
 import MessageBox from './windows/MessageBox/MessageBox.tsx';
 import WindowTypeEnum from './enums/WindowTypeEnum.ts';
 import { WindowProvider } from './contexts/WindowContext/WindowContext.tsx';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { client } from './client.ts';
 
 const shortcuts: IShortcut[] = [
