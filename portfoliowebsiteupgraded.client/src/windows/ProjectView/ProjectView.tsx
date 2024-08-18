@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import { GET_README } from "../../graphql/Query";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import ImageGallery from "../../components/ImageGallery/ImageGallery";
+import ImageGallery from "../../components/MediaGallery/MediaGallery";
 
 interface IProjectView {
     project: ProjectModel
@@ -81,7 +81,7 @@ const ProjectView: FunctionComponent<IProjectView> = ({
         <div className="view">
             <a href={project.repositoryUri} target="_blank"><h1>{project.name}</h1></a>
             <p>{project.description}</p>
-            <ImageGallery image_uris={project.images}></ImageGallery>
+            <ImageGallery uris={project.images}></ImageGallery>
             <Markdown className="markdown" rehypePlugins={[rehypeRaw]}>{markdownTextRaw}</Markdown>
         </div>
     );

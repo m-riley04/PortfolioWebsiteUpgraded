@@ -1,9 +1,11 @@
-$project-view-bg-color: red;
-$project-view-color: black;
+$project-view-bg-color: #131516;
+$project-view-color: #FAF7F0;
 
 .view {
-    width: 100%;
-    height: 100%;
     color: $project-view-color;
     background-color: $project-view-bg-color;
+
+    a:visited {
+        color: blue;
+    }
 }
