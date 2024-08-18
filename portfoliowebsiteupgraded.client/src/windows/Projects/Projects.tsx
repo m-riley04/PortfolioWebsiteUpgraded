@@ -26,6 +26,26 @@ function toCamelCase(obj: any): any {
     return newObj;
 }
 
+function parseJsonStrings(obj: any): any {
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            let value = obj[key];
+
+            // Check if the value is a JSON string and parse it
+            if (typeof value === 'string') {
+                try {
+                    value = JSON.parse(value);
+                } catch (e) {
+                    // If parsing fails, keep the value as it is
+                }
+            }
+            obj[key] = value;
+        }
+    }
+
+    return obj;
+}
+
 function Projects() {
     const { addWindow } = useWindowManager();
     const [items, setItems] = useState<DirectoryItemModel[]>([]);
@@ -67,8 +87,9 @@ function Projects() {
             const response = await fetch(`https://localhost:7036/api/projects`);
             const data = await response.json();
 
-            // Transform each object in the array
-            const transformedData: ProjectModel[] = data.map((project: ProjectModel) => toCamelCase(project));
+            // Transform and parse each object in the array
+            let transformedData: ProjectModel[] = data.map((project: ProjectModel) => toCamelCase(project));
+            transformedData = transformedData.map((project: ProjectModel) => parseJsonStrings(project));
 
             // Convert each project to a directory item
             const directoryItems = [];
@@ -81,8 +102,6 @@ function Projects() {
             console.error('Error fetching project data:', error);
         }
     }
-
-    
 }
 
 export default Projects;
