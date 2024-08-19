@@ -17,7 +17,7 @@ function getFileExtensionFromUri(uri: string): string {
     const parts = uri.split('.');
 
     // The file type is the last part of the array
-    return parts[parts.length - 1].toLowerCase();
+    return parts[parts.length - 1].replace("?raw=true", "").toLowerCase();
 }
 
 function isVideoType(extension: string): boolean {
