@@ -22,10 +22,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release PortfolioWebsiteUpgraded.sln
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish PortfolioWebsiteUpgraded.sln -c Release -o ${{github.workspace}}/output
+        run: dotnet publish -c Release -o ${{github.workspace}}/output
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
