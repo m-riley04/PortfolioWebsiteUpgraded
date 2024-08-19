@@ -9,6 +9,7 @@
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist</PublishAssetsDirectory>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="public\audio\" />
     <Folder Include="src\components\Taskbar\" />
     <Folder Include="src\components\Window\WindowMenubar\" />
     <Folder Include="src\contexts\WindowContext\" />
