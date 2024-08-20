@@ -1,0 +1,13 @@
+$collapse-tab-bg-color: black;
+
+.collapse {
+    background-color: $collapse-tab-bg-color;
+
+    .collapse-title {
+        width: 100%;
+        background-color: blue;
+    }
+
+    .collapse-body {
+    }
+}
