@@ -26,6 +26,10 @@ $shadow-color: rgba(0, 0, 0, 0.5);
         box-shadow: inset 0px 0px black; // Turn off the box shadow for dialog
     }
 
+    .project-body {
+        background-color: #131516;
+    }
+
     .dialog-button-container {
         display: flex;
         width: 100%;

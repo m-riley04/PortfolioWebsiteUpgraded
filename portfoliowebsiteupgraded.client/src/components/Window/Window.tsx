@@ -23,6 +23,7 @@ const Window: FunctionComponent<IWindow> = ({
     z = 0,
     icon_uri = "icons/msg_error.png",
     onClose,
+    className
 }) => {
     const nodeRef = React.useRef(null);
     const { bringToFront } = useWindowManager();
@@ -47,7 +48,7 @@ const Window: FunctionComponent<IWindow> = ({
     const menuBar = type === WindowTypeEnum.EXPLORER ? <WindowMenubar /> : <></>;
 
     const body = hasBody ? (
-        <div className={`body ${type === WindowTypeEnum.DIALOG ? "dialog-body" : ""}`}>{element}</div>
+        <div className={`body ${type === WindowTypeEnum.DIALOG ? "dialog-body" : ""} ${className}`}>{element}</div>
     ) : <></>;
 
     const buttonsContainer = hasButtons ? (
