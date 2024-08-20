@@ -6,6 +6,7 @@ import { GET_README } from "../../graphql/Query";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import ImageGallery from "../../components/MediaGallery/MediaGallery";
+import Collapse from "../../components/Collapse/Collapse";
 
 interface IProjectView {
     project: ProjectModel
@@ -82,7 +83,9 @@ const ProjectView: FunctionComponent<IProjectView> = ({
             <a href={project.repositoryUri} target="_blank"><h1>{project.name}</h1></a>
             <p>{project.description}</p>
             <ImageGallery uris={project.images}></ImageGallery>
-            <Markdown className="markdown" rehypePlugins={[rehypeRaw]}>{markdownTextRaw}</Markdown>
+            <Collapse title="README.md">
+                <Markdown className="markdown" rehypePlugins={[rehypeRaw]}>{markdownTextRaw}</Markdown>
+            </Collapse>
         </div>
     );
 }

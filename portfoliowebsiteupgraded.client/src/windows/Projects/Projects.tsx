@@ -66,7 +66,8 @@ function Projects() {
             width: 1000,
             height: 800,
             icon_uri: "icons/document.png", // No data-driven icon for now
-            type: WindowTypeEnum.DEFAULT
+            type: WindowTypeEnum.DEFAULT,
+            className: "project-body"
         };
         addWindow(window);
     }
