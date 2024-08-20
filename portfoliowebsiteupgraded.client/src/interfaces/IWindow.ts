@@ -18,4 +18,5 @@ export default interface IWindow {
     hasHandle?: boolean;
     hasButtons?: boolean;
     buttons?: ButtonOption[];
+    className?: string;
 }
