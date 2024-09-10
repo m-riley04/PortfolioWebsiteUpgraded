@@ -1,11 +1,12 @@
-$collapse-tab-bg-color: black;
-
 .collapse {
-    background-color: $collapse-tab-bg-color;
 
     .collapse-title {
         width: 100%;
-        background-color: blue;
+    }
+
+    .collapse-title:hover {
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.2)
     }
 
     .collapse-body {

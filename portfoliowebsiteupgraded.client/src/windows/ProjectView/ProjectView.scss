@@ -1,11 +1,127 @@
 $project-view-bg-color: #131516;
 $project-view-color: #FAF7F0;
 
-.view {
-    color: $project-view-color;
-    background-color: $project-view-bg-color;
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    a:visited {
-        color: blue;
-    }
+body {
+    background-color: $project-view-bg-color;
+    color: $project-view-color;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    font-size: 24px;
+}
+
+.logo .info-icon {
+    background-color: blue;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.language {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.back-button {
+    background-color: #333;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.content {
+    display: flex;
+}
+
+.left-column {
+    flex: 2;
+    margin-right: 20px;
+}
+
+.right-column {
+    flex: 1;
+}
+
+.left-column h1,
+.left-column h2 {
+    border-bottom: 1px solid #fff;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+.left-column p {
+    margin-bottom: 10px;
+}
+
+.right-column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.readme,
+.images,
+.collaborators,
+.releases{
+    background-color: #202124;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.image-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: black;
+    color: #fff;
+}
+
+.collaborator {
+    display: flex;
+    align-items: center;
+}
+
+.collaborator img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.releases p {
+    color: #fff;
+}
+
+a:visited {
+    color: blue;
 }

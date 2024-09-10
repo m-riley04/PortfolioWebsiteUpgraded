@@ -63,8 +63,8 @@ function Projects() {
             id: 0, // This will be set by the context
             title: project.name,
             element: <ProjectView project={project} />,
-            width: 1000,
-            height: 800,
+            width_vw: 60,
+            height_vh: 90,
             icon_uri: "icons/document.png", // No data-driven icon for now
             type: WindowTypeEnum.DEFAULT,
             className: "project-body"

@@ -79,13 +79,39 @@ const ProjectView: FunctionComponent<IProjectView> = ({
     const markdownTextRaw = data["repository"]["object"]["text"];
 
     return (
-        <div className="view">
-            <a href={project.repositoryUri} target="_blank"><h1>{project.name}</h1></a>
-            <p>{project.description}</p>
-            <ImageGallery uris={project.images}></ImageGallery>
-            <Collapse title="README.md">
-                <Markdown className="markdown" rehypePlugins={[rehypeRaw]}>{markdownTextRaw}</Markdown>
-            </Collapse>
+        <div className="container">
+            <header className="header">
+                <div className="logo">
+                    <h1>{project.name}</h1>
+                    <p>{project.description}</p>
+                    <span className="language">Language(s): </span>
+                    <a href={project.repositoryUri} target="_blank"><p>GitHub</p></a>
+                </div>
+            </header>
+            
+            <div className="content">
+                <div className="left-column">
+                    <section>
+                        <Collapse title="README.md" className="readme">
+                            <Markdown className="markdown" rehypePlugins={[rehypeRaw]}>{markdownTextRaw}</Markdown>
+                            </Collapse>
+                    </section>
+                </div>
+                <div className="right-column">
+                    <section className="images">
+                        <h3>Media</h3>
+                        <ImageGallery uris={project.images}></ImageGallery>
+                    </section>
+                    <section className="collaborators">
+                        <h3>Collaborators</h3>
+
+                    </section>
+                    <section className="releases">
+                        <h3>Releases</h3>
+
+                    </section>
+                </div>
+            </div>
         </div>
     );
 }

@@ -22,7 +22,7 @@ const Collapse: FunctionComponent<ICollapse> = ({
     return (
         <div className={`collapse ${className}`}>
             <div className="collapse-title" onClick={clicked}>
-                {title}
+                <h2>{title}</h2>
             </div>
             <div
                 className="collapse-body"

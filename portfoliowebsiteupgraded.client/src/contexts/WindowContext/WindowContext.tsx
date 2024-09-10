@@ -6,7 +6,9 @@ const WindowContext = createContext<{
     windows: IWindow[],
     addWindow: (window: IWindow) => void,
     bringToFront: (id: number) => void,
-    removeWindowByKey: (id: number) => void
+    removeWindowByKey: (id: number) => void,
+    removeTopWindow: () => void,
+    getWindowIdByTitle: (title: string) => number
 } | undefined>(undefined);
 
 // Provide the context
@@ -14,6 +16,11 @@ let windowCounter = 0;
 export const WindowProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [windows, setWindows] = useState<IWindow[]>([]);
     const [highestZIndex, setHighestZIndex] = useState(1);
+
+    const getWindowIdByTitle = (title: string) => {
+        const windowId: number = windows.find(w => w.title === title)?.id ?? 0;
+        return windowId;
+    }
 
     const addWindow = (window: IWindow) => {
         if (windows.some((w) => w.id === window.id)) {
@@ -43,8 +50,14 @@ export const WindowProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         console.log(`Window '${id}' removed`);
     };
 
+    const removeTopWindow = () => {
+        const maxZValue: number = Math.max(...windows.map<number>((window) => window.z ?? 0));
+        const topWindowId: number = windows.find((window?) => window?.z === maxZValue)?.id ?? 0;
+        removeWindowByKey(topWindowId);
+    }
+
     return (
-        <WindowContext.Provider value={{ windows, addWindow, bringToFront, removeWindowByKey }}>
+        <WindowContext.Provider value={{ windows, getWindowIdByTitle, addWindow, bringToFront, removeWindowByKey, removeTopWindow }}>
             {children}
         </WindowContext.Provider>
     );
