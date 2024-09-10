@@ -8,11 +8,22 @@ $shadow-width: 3px;
 $shadow-color: rgba(0, 0, 0, 0.5);
 
 .window {
+    display: flex;
+    flex-direction: column;
     background-color: $window-color;
     border: solid $window-border-width $window-color;
     box-shadow: $shadow-width $shadow-width $shadow-color;
+    width: 80vw; // Window width responsive to viewport width
+    height: 60vh; // Window height responsive to viewport height
+    max-width: 100%; // Prevents overflow beyond desktop width
+    max-height: 100%; // Prevents overflow beyond desktop height
+    min-width: 300px; // Minimum width for usability
+    min-height: 125px; // Minimum height for usability
+    resize: both; // Makes window resizable
+    overflow: auto; // Scroll when content overflows
 
     .body {
+        flex-grow: 1;
         overflow: auto;
         padding: 5px;
         box-shadow: inset $shadow-width $shadow-width $shadow-color;
@@ -28,18 +39,6 @@ $shadow-color: rgba(0, 0, 0, 0.5);
 
     .project-body {
         background-color: #131516;
-    }
-
-    .dialog-button-container {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        align-content: center;
-        align-items: center;
-
-        button {
-            width: 20%;
-        }
     }
 
     .handle {

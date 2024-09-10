@@ -8,8 +8,8 @@ export default interface IWindow {
     title?: string;
     icon_uri?: string;
     element?: ReactElement;
-    width?: number;
-    height?: number;
+    width_vw?: number;
+    height_vh?: number;
     x?: number;
     y?: number;
     z?: number;
@@ -19,4 +19,5 @@ export default interface IWindow {
     hasButtons?: boolean;
     buttons?: ButtonOption[];
     className?: string;
+    resizable?: boolean;
 }

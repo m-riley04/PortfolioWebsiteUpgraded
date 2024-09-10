@@ -19,8 +19,8 @@ const shortcuts: IShortcut[] = [
             id: WindowEnum.PROJECTS,
             element: <Projects />,
             type: WindowTypeEnum.EXPLORER,
-            width: 800,
-            height: 500
+            width_vw: 40,
+            height_vh: 50
         }
     },
     {
@@ -30,8 +30,8 @@ const shortcuts: IShortcut[] = [
             id: WindowEnum.ABOUT_ME,
             element: <AboutMe />,
             type: WindowTypeEnum.DEFAULT,
-            width: 1200,
-            height: 800
+            width_vw: 50,
+            height_vh: 50
         }
     },
     {
@@ -39,11 +39,12 @@ const shortcuts: IShortcut[] = [
         image_uri: "icons/recycle_bin_empty.png",
         window: {
             id: 24,
-            element: <MessageBox icon={0} text="This is not implemented yet." />,
+            element: <MessageBox parentWindowTitle="Recycle Bin" icon={0} text="This is not implemented yet." />,
             type: WindowTypeEnum.DIALOG,
-            width: 300,
-            height: 150,
-            hasButtons: true
+            width_vw: 5,
+            height_vh: 5,
+            hasButtons: true,
+            resizable: false
         }
     }
 ]

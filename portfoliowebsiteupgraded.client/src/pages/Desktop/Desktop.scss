@@ -2,13 +2,16 @@ $background-color: #008080;
 
 .monitor {
     position: relative;
-    height: 90%;
-    width: 90%;
+    height: 100vh; // Make it fill the entire viewport height
+    width: 100vw; // Make it fill the entire viewport width
+    display: flex;
+    flex-direction: column;
 
     .desktop {
         position: relative;
         display: flex;
         height: 100%;
+        flex-grow: 1;
         background-color: $background-color;
         overflow: hidden;
     }

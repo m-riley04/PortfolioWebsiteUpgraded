@@ -11,19 +11,18 @@ const Window: FunctionComponent<IWindow> = ({
     id,
     title = "Window Title",
     element = <></>,
-    width = 800,
-    height = 500,
+    width_vw = 80,
+    height_vh = 60,
     hasBody = true,
     hasHandle = true,
-    hasButtons = false,
-    buttons = [{ title: "Ok" }],
     type = WindowTypeEnum.DIALOG,
     x = 0,
     y = 0,
     z = 0,
     icon_uri = "icons/msg_error.png",
     onClose,
-    className
+    className,
+    resizable = true
 }) => {
     const nodeRef = React.useRef(null);
     const { bringToFront } = useWindowManager();
@@ -51,12 +50,6 @@ const Window: FunctionComponent<IWindow> = ({
         <div className={`body ${type === WindowTypeEnum.DIALOG ? "dialog-body" : ""} ${className}`}>{element}</div>
     ) : <></>;
 
-    const buttonsContainer = hasButtons ? (
-        <div className="dialog-button-container">
-            {buttons.map((option, i) => <button key={i} onClick={option.onClick}><u>{option.title.charAt(0)}</u>{option.title.substring(1)}</button>)}
-        </div>
-    ) : <></>;
-
     // Bring the window to the front on click or drag
     const handleFocus = () => {
         bringToFront(id);
@@ -72,14 +65,13 @@ const Window: FunctionComponent<IWindow> = ({
         >
             <div
                 className="window"
-                style={{ width: `${width}px`, height: `${height}px`, position: 'absolute', zIndex: z }}
+                style={{ width: `${width_vw}vw`, height: `${height_vh}vh`, position: 'absolute', zIndex: z, resize: resizable ? "both" : "none"}}
                 ref={nodeRef}
                 onMouseDown={handleFocus}  // Brings to front on mouse down
             >
                 {handle}
                 {menuBar}
                 {body}
-                {buttonsContainer}
             </div>
         </Draggable>
     );
