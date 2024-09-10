@@ -1,12 +1,28 @@
 .message-box {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    text-align: left;
 
-    img {
-        margin-right: 10%;
+    .message-container {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        text-align: left;
+
+        img {
+            margin-right: 10%;
+        }
+    }
+
+    .dialog-button-container {
+        padding-top: 20px;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+
+        button {
+            width: 20%;
+        }
     }
 }
