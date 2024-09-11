@@ -1,0 +1,12 @@
+.notepad-body {
+    display: flex;
+    height: 100%;
+    color: black;
+
+    p {
+        flex-grow: 1;
+        resize: none;
+        border: none;
+        outline: none;
+    }
+}

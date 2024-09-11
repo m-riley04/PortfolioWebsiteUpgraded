@@ -5,11 +5,30 @@ import IWindow from "../../interfaces/IWindow";
 import Window from "../../components/Window/Window";
 import Taskbar from "../../components/Taskbar/Taskbar";
 import { useWindowManager } from "../../contexts/WindowContext/WindowContext";
+import { useEffect } from "react";
+import Notepad from "../../windows/Notepad/Notepad";
+import WindowTypeEnum from "../../enums/WindowTypeEnum";
 
 const X_PADDING = 20;
 
 function Desktop(props: { shortcuts?: IShortcut[] }) {
     const { windows, addWindow, removeWindowByKey } = useWindowManager();
+
+    // Getting Started Notepad Window
+    const notepadWindow: IWindow = {
+        id: 0,
+        title: "Notepad",
+        icon_uri: "icons/notepad-2.png",
+        element: <Notepad text="Hello! <br> This is text!" />,
+        type: WindowTypeEnum.EXPLORER,
+        width_vw: 40,
+        height_vh: 50
+    }
+
+    useEffect(() => {
+        // Add the notepad window as the first
+        addWindow(notepadWindow);
+    }, []);
 
     return (
         <div className="monitor">
