@@ -1,13 +1,23 @@
 $explorer-bg-color: lightgray;
 
+@font-face {
+    font-family: "Windows Regular";
+    src: local('Windows Regular'), url('./assets/fonts/Windows Regular.ttf') format('truetype');
+}
+
 :root {
     background-color: black;
     color: white;
-    font-family: "Microsoft Sans Serif"
+    font-family: "Windows Regular";
 }
 
 button {
     background-color: $explorer-bg-color;
     border-top: solid 2px white;
     border-left: solid 2px white;
+    font-family: "Windows Regular";
+}
+
+* {
+    font-family: "Windows Regular";
 }

@@ -16,6 +16,7 @@ function AboutMe() {
     ];
 
     const frameworksTools: string[] = [
+        ".NET",
         "Qt",
         "Tkinter",
         "Node.js",
