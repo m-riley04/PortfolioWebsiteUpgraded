@@ -31,7 +31,7 @@ const shortcuts: IShortcut[] = [
             element: <AboutMe />,
             type: WindowTypeEnum.DEFAULT,
             width_vw: 50,
-            height_vh: 50
+            height_vh: 92
         }
     },
     {
