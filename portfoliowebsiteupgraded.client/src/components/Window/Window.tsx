@@ -65,7 +65,15 @@ const Window: FunctionComponent<IWindow> = ({
         >
             <div
                 className="window"
-                style={{ width: `${width_vw}vw`, height: `${height_vh}vh`, position: 'absolute', zIndex: z, resize: resizable ? "both" : "none"}}
+                style={{
+                    width: `${width_vw}vw`,
+                    height: `${height_vh}vh`,
+                    position: 'absolute',
+                    zIndex: z,
+                    resize: resizable ? "both" : "none",
+                    left: `${x}px`,
+                    top: `${y}px`
+                }}
                 ref={nodeRef}
                 onMouseDown={handleFocus}  // Brings to front on mouse down
             >

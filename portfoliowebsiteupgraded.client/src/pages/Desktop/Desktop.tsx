@@ -19,10 +19,12 @@ function Desktop(props: { shortcuts?: IShortcut[] }) {
         id: 0,
         title: "Notepad",
         icon_uri: "icons/notepad-2.png",
-        element: <Notepad text="Hello! <br> This is text!" />,
+        element: <Notepad text={`Welcome to my website! You can navigate this page just as you would a Windows operating system; specifically, Windows 98.`} />,
         type: WindowTypeEnum.EXPLORER,
         width_vw: 40,
-        height_vh: 50
+        height_vh: 50,
+        x: 60,
+        y: 60
     }
 
     useEffect(() => {
@@ -41,6 +43,8 @@ function Desktop(props: { shortcuts?: IShortcut[] }) {
                         if (window) {
                             window.title = (window.title ?? shortcut.name) ?? "Window Title";
                             window.icon_uri = (window.icon_uri ?? shortcut.image_uri) ?? "vite.svg";
+                            window.x = window.x ?? 100 + i * X_PADDING; // Set dynamic x
+                            window.y = window.y ?? 100 + i * X_PADDING; // Set dynamic y
                         }
 
                         return <Shortcut {...shortcut} key={i} x={X_PADDING * i} onOpen={() => addWindow(window)}/>
