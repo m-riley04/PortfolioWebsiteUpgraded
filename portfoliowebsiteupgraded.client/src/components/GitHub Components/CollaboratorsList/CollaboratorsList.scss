@@ -1,0 +1,16 @@
+.collaborators-list-item {
+    display: flex;
+
+    * {
+        flex: 6;
+    }
+
+    img {
+        flex: 1;
+        width: 50px;
+    }
+}
+
+.collaborators-list-item:hover {
+    border: 2px solid white;
+}
