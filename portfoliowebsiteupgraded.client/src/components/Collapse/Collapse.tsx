@@ -5,14 +5,16 @@ interface ICollapse {
     className?: string;
     children?: ReactNode;
     title?: string;
+    open?: boolean
 }
 
 const Collapse: FunctionComponent<ICollapse> = ({
     className,
     children,
-    title = "Collapse"
+    title = "Collapse",
+    open = false
 }) => {
-    const [opened, setOpened] = useState<boolean>(false);
+    const [opened, setOpened] = useState<boolean>(open);
 
     function clicked() {
         const currentOpened = opened;
