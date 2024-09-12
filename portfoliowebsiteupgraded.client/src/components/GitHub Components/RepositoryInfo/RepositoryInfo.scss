@@ -1,0 +1,35 @@
+.repository-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    h1 {
+        font-size: 36px;
+    }
+
+    .name-container {
+        margin-right: 10px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+        }
+    }
+
+    .github-button {
+    }
+}
+
+.language {
+    margin-left: 10px;
+    font-size: 18px;
+}

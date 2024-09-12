@@ -12,7 +12,7 @@ function AboutMe() {
         "HTML",
         "CSS",
         "SQL",
-        "LatEx"
+        "LaTeX"
     ];
 
     const frameworksTools: string[] = [

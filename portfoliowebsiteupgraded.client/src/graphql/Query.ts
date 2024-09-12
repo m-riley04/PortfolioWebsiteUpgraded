@@ -229,8 +229,11 @@ export const GET_RELEASES = gql`
     query getReleases($user: String!, $repository: String!) {
         user(login: $user) {
             repository(name: $repository) {
-                releases {
-                    ${RELEASE_PROPS}
+                releases(first: 100) {
+                    totalCount
+                    nodes {
+                        ${RELEASE_PROPS}
+                    }
                 }
             }
         }

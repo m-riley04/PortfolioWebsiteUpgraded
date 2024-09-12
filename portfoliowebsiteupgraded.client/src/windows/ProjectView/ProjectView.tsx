@@ -10,6 +10,8 @@ import Collapse from "../../components/Collapse/Collapse";
 import { GithubRepositoryUrl } from "../../types/GitHubTypes";
 import { parseGithubRepoUrl } from "../../utils/GitHubUtils";
 import ProjectCollaborators from "../../components/GitHub Components/CollaboratorsList/CollaboratorsList";
+import ReleasesList from "../../components/GitHub Components/ReleasesList/ReleasesList";
+import RepositoryInfo from "../../components/GitHub Components/RepositoryInfo/RepositoryInfo";
 
 interface IProjectView {
     project: ProjectModel
@@ -45,12 +47,7 @@ const ProjectView: FunctionComponent<IProjectView> = ({
     return (
         <div className="container">
             <header className="header">
-                <div className="logo">
-                    <h1>{project.name}</h1>
-                    <p>{project.description}</p>
-                    <span className="language">Language(s): </span>
-                    <a href={project.repositoryUri} target="_blank"><p>GitHub</p></a>
-                </div>
+                <RepositoryInfo project={project} />
             </header>
             
             <div className="content">
@@ -72,7 +69,7 @@ const ProjectView: FunctionComponent<IProjectView> = ({
                     </section>
                     <section className="releases">
                         <h3>Releases</h3>
-
+                        <ReleasesList project={project} />
                     </section>
                 </div>
             </div>

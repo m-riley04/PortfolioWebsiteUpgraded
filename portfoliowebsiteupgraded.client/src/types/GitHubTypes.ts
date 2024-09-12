@@ -42,7 +42,7 @@ export interface ReleaseAsset {
     downloadUrl: string
 }
 
-export interface ReleaseAssets {
+export interface ReleaseAssetConnection {
     totalCount: number,
     nodes: ReleaseAsset[]
 }
@@ -58,7 +58,12 @@ export interface Release {
     description: string,
     descriptionHTML: string,
     resourcePath: string,
-    releaseAssets: ReleaseAssets
+    releaseAssets: ReleaseAssetConnection
+}
+
+export interface ReleaseConnection {
+    totalCount: number;
+    nodes: Release[]
 }
 
 export interface Repository {
@@ -75,7 +80,7 @@ export interface Repository {
     updatedAt: string,
     pushedAt: string,
     latestRelease: Release | undefined,
-    releases: Array<Release> | undefined,
+    releases: ReleaseConnection | undefined,
     primaryLanguage: Language,
     languages: Array<Language>,
     resourcePath: string,
