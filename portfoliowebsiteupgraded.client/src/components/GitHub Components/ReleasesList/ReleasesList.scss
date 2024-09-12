@@ -16,10 +16,11 @@ $button-padding: 5px;
 
     .right-column {
         display: flex;
+        flex: 1;
         align-content: center;
         justify-content: center;
         margin: 10px 0px 10px 0px;
-        flex: 1;
+        gap: 10px;
 
         button {
             padding: $button-padding;

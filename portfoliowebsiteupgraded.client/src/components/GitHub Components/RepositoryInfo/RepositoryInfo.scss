@@ -1,3 +1,8 @@
+$info-popup-background-color: rgba(19, 21, 22, 0.85);
+$info-popup-color: #FAF7F0;
+$info-popup-shadow-color: rgba(0, 0, 0, 0.5);
+$info-popup-shadow-width: 4px;
+
 .repository-info {
     display: flex;
     justify-content: center;
@@ -12,6 +17,15 @@
         margin-right: 10px;
     }
 
+    .info-popup {
+        position: absolute;
+        background-color: $info-popup-background-color;
+        color: $info-popup-color;
+        box-shadow: $info-popup-shadow-width $info-popup-shadow-width $info-popup-shadow-color;
+        padding: 10px;
+        width: 30%;
+    }
+
     .button-container {
         display: flex;
         justify-content: center;
@@ -22,6 +36,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50px;
+            cursor: pointer;
         }
     }
 

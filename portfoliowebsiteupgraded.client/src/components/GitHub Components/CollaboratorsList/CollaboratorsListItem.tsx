@@ -11,12 +11,12 @@ const CollaboratorsListItem: FunctionComponent<ICollaboratorsListItem> = ({
 }) => {
 
     return (
-        <a href={collaborator.url} target="_blank">
-            <div className="collaborators-list-item">
-                <img src={collaborator.avatarUrl} />
-                <p>{collaborator.name} ({collaborator.login})</p>
-            </div>
-        </a>
+        <div className="collaborators-list-item" onClick={
+            () => window.open(collaborator.url, "_blank")
+        }>
+            <img src={collaborator.avatarUrl} />
+            <p>{collaborator.login} ({collaborator.name})</p>
+        </div>
     );
 }
 

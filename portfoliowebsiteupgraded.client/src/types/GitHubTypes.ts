@@ -24,6 +24,10 @@ export interface Language {
     color: string;
 }
 
+export interface LanguageConnection {
+    nodes: Language[]
+}
+
 export interface User {
     login: string,
     name: string,
@@ -82,6 +86,6 @@ export interface Repository {
     latestRelease: Release | undefined,
     releases: ReleaseConnection | undefined,
     primaryLanguage: Language,
-    languages: Array<Language>,
+    languages: LanguageConnection,
     resourcePath: string,
 }
