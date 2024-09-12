@@ -50,7 +50,7 @@ function AboutMe() {
     const personalInterests: string[] = [
         "Violin (17+ years)",
         "Programming",
-        "Data Collection",
+        "Data Collection and Analysis",
         "Photography and Graphic Design"
     ];
 
