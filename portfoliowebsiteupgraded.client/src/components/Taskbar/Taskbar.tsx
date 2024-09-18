@@ -19,7 +19,16 @@ function Taskbar(props: ITaskbar) {
             <div className="tabs-container">
                 <button className="button-start"><img src="icons/windows.png" />Start</button>
                 {props.windows.map((window) =>
-                    <button key={window.id} onClick={() => bringToFront(window.id)}>{window.title}</button>
+                    <button
+                        className="tab-button"
+                        key={window.id}
+                        onClick={
+                            () => bringToFront(window.id)
+                        }
+                    >
+                        <img src={window.icon_uri}></img>
+                        {window.title}
+                    </button>
                 )}
             </div>
             <div className="tray-container">
