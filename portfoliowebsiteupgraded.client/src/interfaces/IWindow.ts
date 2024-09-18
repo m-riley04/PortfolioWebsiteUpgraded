@@ -20,4 +20,5 @@ export default interface IWindow {
     buttons?: ButtonOption[];
     className?: string;
     resizable?: boolean;
+    hidden?: boolean;
 }
