@@ -22,15 +22,20 @@ const Window: FunctionComponent<IWindow> = ({
     icon_uri = "icons/msg_error.png",
     onClose,
     className,
-    resizable = true
+    resizable = true,
+    hidden = false
 }) => {
     const nodeRef = React.useRef(null);
-    const { bringToFront } = useWindowManager();
+    const { bringToFront, minimizeWindowById, getWindowIdByTitle } = useWindowManager();
 
     useEffect(() => {
         // Bring the window to the front when it is first rendered
         bringToFront(id);
     }, []);
+
+    function minimize() {
+        minimizeWindowById(getWindowIdByTitle(title));
+    }
 
     const handle = hasHandle ? (
         <WindowHandle
@@ -41,6 +46,7 @@ const Window: FunctionComponent<IWindow> = ({
             hasMaximize={true}
             className="handle"
             onClose={() => onClose?.(id)}
+            onMinimize={minimize}
         />
     ) : <></>;
 
@@ -72,7 +78,9 @@ const Window: FunctionComponent<IWindow> = ({
                     zIndex: z,
                     resize: resizable ? "both" : "none",
                     left: `${x}px`,
-                    top: `${y}px`
+                    top: `${y}px`,
+                    visibility: hidden ? "hidden" : "visible",
+                    pointerEvents: hidden ? "none" : "auto",
                 }}
                 ref={nodeRef}
                 onMouseDown={handleFocus}  // Brings to front on mouse down

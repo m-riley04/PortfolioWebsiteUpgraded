@@ -1,5 +1,3 @@
-import { MouseEventHandler } from "react";
-
 interface IWindowHandle {
     title: string;
     icon_uri: string;
@@ -8,8 +6,8 @@ interface IWindowHandle {
     hasMaximize?: boolean;
     className?: string;
     onClose?: () => void;
-    onMinimize?: MouseEventHandler<HTMLButtonElement>;
-    onMaximize?: MouseEventHandler<HTMLButtonElement>;
+    onMinimize?: () => void;
+    onMaximize?: () => void;
 }
 
 function WindowHandle(props: IWindowHandle) {
