@@ -47,7 +47,7 @@ function getMediaType(extension: string): MediaTypeEnum {
     }
 }
 
-const ImageGallery: FunctionComponent<IImageGallery> = ({
+const MediaGallery: FunctionComponent<IImageGallery> = ({
     uris = []
 }) => {
     const [index, setIndex] = useState(0);
@@ -127,4 +127,4 @@ const ImageGallery: FunctionComponent<IImageGallery> = ({
     );
 }
 
-export default ImageGallery;
+export default MediaGallery;

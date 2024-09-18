@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import { GET_README } from "../../graphql/Query";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import ImageGallery from "../../components/MediaGallery/MediaGallery";
+import MediaGallery from "../../components/MediaGallery/MediaGallery";
 import Collapse from "../../components/Collapse/Collapse";
 import { GithubRepositoryUrl } from "../../types/GitHubTypes";
 import { parseGithubRepoUrl } from "../../utils/GitHubUtils";
@@ -61,7 +61,7 @@ const ProjectView: FunctionComponent<IProjectView> = ({
                 <div className="right-column">
                     <section className="images">
                         <h3>Media</h3>
-                        <ImageGallery uris={project.images}></ImageGallery>
+                        <MediaGallery uris={project.images}></MediaGallery>
                     </section>
                     <section className="collaborators">
                         <h3>Collaborators</h3>
