@@ -5,38 +5,31 @@ import IWindow from "../../interfaces/IWindow";
 import Window from "../../components/Window/Window";
 import Taskbar from "../../components/Taskbar/Taskbar";
 import { useWindowManager } from "../../contexts/WindowContext/WindowContext";
-import { useEffect } from "react";
-import Notepad from "../../windows/Notepad/Notepad";
-import WindowTypeEnum from "../../enums/WindowTypeEnum";
+import { FunctionComponent, useEffect } from "react";
 
 const X_PADDING = 20;
 
-function Desktop(props: { shortcuts?: IShortcut[] }) {
+interface IDesktop {
+    shortcuts?: IShortcut[],
+    initialWindows?: IWindow[]
+}
+
+const Desktop: FunctionComponent<IDesktop> = ({
+    shortcuts,
+    initialWindows = []
+}) => {
     const { windows, addWindow, removeWindowByKey } = useWindowManager();
 
-    // Getting Started Notepad Window
-    const notepadWindow: IWindow = {
-        id: 0,
-        title: "Notepad",
-        icon_uri: "icons/notepad-2.png",
-        element: <Notepad text={`Welcome to my website! You can navigate this page just as you would a Windows operating system; specifically, Windows 98.`} />,
-        type: WindowTypeEnum.EXPLORER,
-        width_vw: 40,
-        height_vh: 50,
-        x: 60,
-        y: 60
-    }
-
     useEffect(() => {
-        // Add the notepad window as the first
-        addWindow(notepadWindow);
+        // Add the initial windows
+        initialWindows.forEach((w) => addWindow(w));
     }, []);
 
     return (
         <div className="monitor">
             <div className="desktop">
                 { // Create shortcuts
-                    props.shortcuts?.map((shortcut, i) => {
+                    shortcuts?.map((shortcut, i) => {
                         const window: IWindow = shortcut.window ?? { id: 9999 };
 
                         // Check inherited values
