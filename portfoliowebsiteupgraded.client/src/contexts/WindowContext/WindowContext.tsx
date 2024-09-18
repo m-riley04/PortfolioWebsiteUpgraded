@@ -8,7 +8,8 @@ const WindowContext = createContext<{
     bringToFront: (id: number) => void,
     removeWindowByKey: (id: number) => void,
     removeTopWindow: () => void,
-    getWindowIdByTitle: (title: string) => number
+    getWindowIdByTitle: (title: string) => number,
+    minimizeWindowById: (id: number) => void
 } | undefined>(undefined);
 
 // Provide the context
@@ -38,12 +39,22 @@ export const WindowProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         if (windowToBringToFront) {
             setWindows(windows.map(w =>
                 w.id === id
-                    ? { ...w, z: highestZIndex }
+                    ? { ...w, z: highestZIndex, hidden: false }
                     : w
             ));
             setHighestZIndex(highestZIndex + 1);
         }
     };
+
+    const minimizeWindowById = (id: number) => {
+        setWindows((prevWindows) =>
+            prevWindows.map(w =>
+                w.id === id
+                    ? { ...w, hidden: true }  // Set hidden to true when minimizing
+                    : w
+            )
+        );
+    }
 
     const removeWindowByKey = (id: number) => {
         setWindows(windows.filter((window) => window.id !== id));
@@ -57,7 +68,7 @@ export const WindowProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
 
     return (
-        <WindowContext.Provider value={{ windows, getWindowIdByTitle, addWindow, bringToFront, removeWindowByKey, removeTopWindow }}>
+        <WindowContext.Provider value={{ windows, getWindowIdByTitle, addWindow, bringToFront, minimizeWindowById, removeWindowByKey, removeTopWindow }}>
             {children}
         </WindowContext.Provider>
     );
