@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import ProjectModel from "../../../models/ProjectModel";
 import { GET_REPOSITORY } from "../../../graphql/Query";
 import { useQuery } from "@apollo/client";
@@ -21,18 +21,8 @@ const RepositoryInfo: FunctionComponent<IRepositoryInfo> = ({
         },
     });
 
-    const [popupVisible, setPopupVisible] = useState(false);
-
-    if (loading) return (
-        <>
-            Loading...
-        </>
-    );
-    if (error) return (
-        <>
-            Error: {error.message}
-        </>
-    );
+    if (loading) return <>Loading...</>;
+    if (error) return <>Error: {error.message}</>;
 
     const repository: Repository = data["repository"];
 
@@ -42,37 +32,17 @@ const RepositoryInfo: FunctionComponent<IRepositoryInfo> = ({
                 <h1>{repository.name}</h1>
             </div>
             <div className="button-container">
-                <div hidden={!popupVisible} className="info-popup"
-                onPointerOver={
-                    () => setPopupVisible(true)
-                }
-                onPointerLeave={
-                    () => setPopupVisible(false)
-                }                >
+                <button>i</button>
+                <div className="info-popup">
                     <p>Owner: {repository.owner.login}</p>
                     <p>Description: {repository.description}</p>
                     <p>Languages: {repository.languages.nodes.map(l => `${l.name}, `)}</p>
                     <p>Creation Date: {repository.createdAt}</p>
                     <p>Updated Date: {repository.updatedAt}</p>
                 </div>
-                <button onPointerEnter={
-                    () => setPopupVisible(true)
-                }
-                    onPointerOverCapture={
-                        () => setPopupVisible(true)
-                    }
-                    onPointerOver={
-                        () => setPopupVisible(true)
-                    }
-                    onPointerMove={
-                        () => setPopupVisible(true)
-                    }
-                    onPointerOut={
-                        () => setPopupVisible(false)
-                    }>i</button>
                 <button onClick={
                     () => window.open(project.repositoryUri, "_blank")
-                }>Github</button>
+                }><img src="/icons/github.png" alt="GitHub"></img></button>
             </div>
         </div>
     );

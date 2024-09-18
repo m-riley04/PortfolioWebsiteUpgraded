@@ -17,30 +17,49 @@ $info-popup-shadow-width: 4px;
         margin-right: 10px;
     }
 
-    .info-popup {
-        position: absolute;
-        background-color: $info-popup-background-color;
-        color: $info-popup-color;
-        box-shadow: $info-popup-shadow-width $info-popup-shadow-width $info-popup-shadow-color;
-        padding: 10px;
-        width: 30%;
-    }
-
     .button-container {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 5px;
 
         button {
+            display: flex; // Make the button a flex container
+            justify-content: center; // Center horizontally
+            align-items: center; // Center vertically
             width: 30px;
             height: 30px;
-            border-radius: 50px;
+            border-radius: 50%;
             cursor: pointer;
-        }
-    }
 
-    .github-button {
+            img {
+                width: 70%;
+                height: 70%;
+            }
+        }
+        /* Info box that will appear above the button */
+        .info-popup {
+            position: absolute;
+            background-color: $info-popup-background-color;
+            color: $info-popup-color;
+            box-shadow: $info-popup-shadow-width $info-popup-shadow-width $info-popup-shadow-color;
+            padding: 10px;
+            width: 400px;
+            border-radius: 5px;
+            opacity: 0; /* Initially hidden */
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            top: 110%; /* Position above the button */
+            left: 50%; /* Center the popup horizontally above the button */
+            transform: translateX(-50%); /* Centering */
+            z-index: 9999;
+        }
+        /* When the button is hovered, show the popup */
+        button:hover + .info-popup {
+            opacity: 1; /* Make the popup visible */
+            visibility: visible;
+        }
     }
 }
 
