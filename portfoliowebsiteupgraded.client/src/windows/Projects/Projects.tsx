@@ -85,7 +85,13 @@ function Projects() {
 
     async function populateProjectData() {
         try {
-            const response = await fetch(`https://localhost:7036/api/projects`);
+            const response = await fetch(`/api/projects`);
+
+            // Check network response
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
             const data = await response.json();
 
             // Transform and parse each object in the array
