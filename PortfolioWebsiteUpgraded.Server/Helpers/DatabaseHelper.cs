@@ -5,26 +5,11 @@ namespace PortfolioWebsiteUpgraded.Server.Helpers
 {
     public class DatabaseHelper
     {
-        private readonly string databaseUserIdPath = $"{Directory.GetCurrentDirectory()}\\Secrets\\db_user_id.txt";
-        private readonly string databaseUserSecretPath = $"{Directory.GetCurrentDirectory()}\\Secrets\\db_user_secret.txt";
-
         public DatabaseHelper() { }
 
-        public string DatabaseUserId
-        {
-            get
-            {
-                return File.ReadAllText(databaseUserIdPath).Trim();
-            }
-        }
+        public string DatabaseUserId => Environment.GetEnvironmentVariable("DB_USER_ID") ?? "";
 
-        public string DatabaseUserSecret
-        {
-            get
-            {
-                return File.ReadAllText(databaseUserSecretPath).Trim();
-            }
-        }
+        public string DatabaseUserSecret => Environment.GetEnvironmentVariable("DB_USER_SECRET") ?? "";
 
         public int ConnectionTimeout = 30;
 
