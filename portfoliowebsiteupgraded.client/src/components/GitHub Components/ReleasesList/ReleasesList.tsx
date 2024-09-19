@@ -38,6 +38,13 @@ const ReleasesList: FunctionComponent<IReleasesList> = ({
 
     const releases: Release[] = data["user"]["repository"]["releases"]["nodes"];
 
+    // Check for empty releases
+    if (releases.length <= 0) return (
+        <div className="releases-empty-container">
+            <p>No releases to display.</p>
+        </div>
+    )
+
     if (data) return (
         <>
             {releases.map(r => <ReleasesListItem release={r} />)}

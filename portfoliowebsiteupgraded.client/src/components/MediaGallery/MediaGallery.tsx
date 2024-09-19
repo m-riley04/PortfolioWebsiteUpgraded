@@ -66,6 +66,11 @@ const MediaGallery: FunctionComponent<IImageGallery> = ({
     }
 
     useEffect(() => {
+        // Check for empty uris
+        if (uris.length <= 0) {
+            return;
+        }
+
         setLoading(true);
         const fileExtension = getFileExtensionFromUri(uris[index]);
         const newMediaType = getMediaType(fileExtension);
@@ -85,9 +90,9 @@ const MediaGallery: FunctionComponent<IImageGallery> = ({
         }
     }, [index, uris]);
 
-    if (uris.length < 1) return (
+    if (uris.length <= 0) return (
         <div className="image-gallery">
-            <p>No images displayed.</p>
+            <p>No media displayed.</p>
         </div>
     );
 
