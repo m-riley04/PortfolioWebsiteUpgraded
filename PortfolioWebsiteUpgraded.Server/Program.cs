@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Diagnostics;
 using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,8 +14,12 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Add services to the container.
+// Configure logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
+// Add services to the container
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -30,6 +35,25 @@ builder.Configuration
 
 var app = builder.Build();
 
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+
+        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+        var exception = exceptionHandlerPathFeature?.Error;
+
+        // Log the exception
+        var logger = app.Services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(exception, "Unhandled exception occurred.");
+
+        await context.Response.WriteAsync("An unexpected error occurred.");
+    });
+});
+
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -42,11 +66,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
 app.UseAuthorization();
 
 app.UseCors("AllowSpecificOrigin");
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    _ = endpoints.MapControllers();
+});
 
 app.MapFallbackToFile("/index.html");
 
