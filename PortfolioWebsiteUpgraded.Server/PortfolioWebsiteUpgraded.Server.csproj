@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -8,15 +8,6 @@
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
   </PropertyGroup>
-
-    <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
-	    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-	    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" EnvironmentVariables="VITE_API_URL=$(VITE_API_URL)"/>
-	    <ItemGroup>
-		    <DistFiles Include="$(SpaRoot)\dist\**\*" />
-		    <StaticWebAsset Include="@(DistFiles->'%(FullPath)')" RelativePath="%(RecursiveDir)%(Filename)%(Extension)" />
-	    </ItemGroup>
-    </Target>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
